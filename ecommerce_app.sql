@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2020 at 12:22 AM
+-- Generation Time: Jun 09, 2020 at 06:20 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -428,7 +428,52 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (28, '2020_05_12_155228_create_products_table', 1),
 (29, '2020_06_01_114812_create_app_categories_table', 1),
 (30, '2020_06_01_123544_create_category_product_table', 1),
-(31, '2020_06_01_194647_create_coupons_table', 1);
+(31, '2020_06_01_194647_create_coupons_table', 1),
+(32, '2020_06_09_121919_create_orders_table', 2),
+(33, '2020_06_09_150657_create_order_product_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `billing_email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_province` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_name_on_card` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_discount` int(11) NOT NULL DEFAULT '0',
+  `billing_discount_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_subtotal` int(11) NOT NULL,
+  `billing_tax` int(11) NOT NULL,
+  `billing_total` int(11) NOT NULL,
+  `payment_gateway` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'stripe',
+  `shipped` tinyint(1) NOT NULL DEFAULT '0',
+  `error` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_product`
+--
+
+CREATE TABLE `order_product` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `product_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `quantity` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -760,7 +805,7 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
 (4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Site'),
 (5, 'admin.bg_image', 'Admin Background Image', 'settings\\June2020\\eBtoqpU2WklWY6QmFbfx.jpg', '', 'image', 5, 'Admin'),
-(6, 'admin.title', 'Admin Title', 'Samy', '', 'text', 1, 'Admin'),
+(6, 'admin.title', 'Admin Title', NULL, '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Welcome to Laravel E-commerce App', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
@@ -808,7 +853,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Samy', 'samy@email.com', 'users/default.png', NULL, '$2y$10$8LSON1lJnQl7v9jR4v8..OJ4wLMlsoK12zm23bXnwS5H1Wwfi0oHO', 'Rq4Jwo94sdXm6WratZHivs0aOM4iNkxaBcqKBbYJZZnYvX9PM4PiE5ijWuk5', NULL, '2020-06-04 14:03:55', '2020-06-04 14:03:55');
+(1, 1, 'Samy', 'samy@email.com', 'users/default.png', NULL, '$2y$10$8LSON1lJnQl7v9jR4v8..OJ4wLMlsoK12zm23bXnwS5H1Wwfi0oHO', 'oKbtTP5H2KSydj5arxXTNaQZXSj0n3ORVq0r3vy9XgOkZjczK5eNq4codFaH', NULL, '2020-06-04 14:03:55', '2020-06-04 14:03:55');
 
 -- --------------------------------------------------------
 
@@ -896,6 +941,21 @@ ALTER TABLE `menu_items`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `order_product`
+--
+ALTER TABLE `order_product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_product_order_id_foreign` (`order_id`),
+  ADD KEY `order_product_product_id_foreign` (`product_id`);
 
 --
 -- Indexes for table `pages`
@@ -1039,7 +1099,19 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_product`
+--
+ALTER TABLE `order_product`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -1117,6 +1189,19 @@ ALTER TABLE `data_rows`
 --
 ALTER TABLE `menu_items`
   ADD CONSTRAINT `menu_items_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `order_product`
+--
+ALTER TABLE `order_product`
+  ADD CONSTRAINT `order_product_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `order_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `permission_role`

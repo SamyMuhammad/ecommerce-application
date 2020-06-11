@@ -19,6 +19,22 @@
 	</section>
 	<!-- End Banner Area -->
 
+	<div>
+        @if (session()->has('success'))
+            <div class="alert alert-success mt-1 text-center">{{ session('success') }}</div>
+        @endif
+
+        @if (count($errors) > 0)
+            <div class="alert alert-danger mt-1 text-center">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error}}</li>
+                    @endforeach    
+                </ul>
+            </div>
+        @endif
+    </div>
+
 	<!--================Order Details Area =================-->
 	<section class="order_details section_gap">
 		<div class="container">

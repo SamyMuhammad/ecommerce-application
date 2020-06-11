@@ -35,10 +35,6 @@
 									<h1>Welcome to Ecommerce <br>Laravel App!</h1>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
 										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-									<!-- <div class="add-bag d-flex align-items-center">
-										<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
-										<span class="add-text text-uppercase">Add to Bag</span>
-									</div> -->
 								</div>
 							</div>
 							<div class="col-lg-7">
@@ -47,32 +43,27 @@
 								</div>
 							</div>
 						</div>
-						<!-- single-slide -->
-{{-- 						<div class="row single-slide">
-							<div class="col-lg-5">
-								<div class="banner-content">
-									<h1>See our best <br>Offers!</h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-									<div class="add-bag d-flex align-items-center">
-										<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
-										<span class="add-text text-uppercase">Add to Bag</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-7">
-								<div class="banner-img">
-									<img class="img-fluid" src="img/banner/banner-img2.png" alt="">
-								</div>
-							</div>
-						</div> --}}
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- End banner Area -->
+	<div>
+        @if (session()->has('success'))
+            <div class="alert alert-success mt-1 text-center">{{ session('success') }}</div>
+        @endif
 
+        @if (count($errors) > 0)
+            <div class="alert alert-danger mt-1 text-center">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error}}</li>
+                    @endforeach    
+                </ul>
+            </div>
+        @endif
+    </div>
 	<!-- start features Area -->
 	<section class="features-area section_gap">
 		<div class="container">

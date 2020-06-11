@@ -35,19 +35,27 @@
 		</div>
 	</section>
 	<!-- End Banner Area -->
+	<div>
+        @if (session()->has('success'))
+            <div class="alert alert-success mt-1 text-center">{{ session('success') }}</div>
+        @endif
 
+        @if (count($errors) > 0)
+            <div class="alert alert-danger mt-1 text-center">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error}}</li>
+                    @endforeach    
+                </ul>
+            </div>
+        @endif
+    </div>
 	<!--================Single Product Area =================-->
 	<div class="product_image_area">
 		<div class="container">
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
 					<div class="s_Product_carousel">
-						<div class="single-prd-item">
-							<img class="img-fluid" src="{{asset('storage/' . $product->image)}}" alt="">
-						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="{{asset('storage/' . $product->image)}}" alt="">
-						</div>
 						<div class="single-prd-item">
 							<img class="img-fluid" src="{{asset('storage/' . $product->image)}}" alt="">
 						</div>
