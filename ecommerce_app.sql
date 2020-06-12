@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2020 at 06:20 PM
+-- Generation Time: Jun 12, 2020 at 11:43 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -266,7 +266,28 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (41, 6, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, '{}', 8),
 (42, 6, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 9),
 (43, 6, 'updated_at', 'timestamp', 'Updated At', 0, 1, 1, 0, 0, 0, '{}', 10),
-(44, 6, 'product_belongstomany_app_category_relationship', 'relationship', 'app_categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Category\",\"table\":\"app_categories\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"category_product\",\"pivot\":\"1\",\"taggable\":\"on\"}', 11);
+(44, 6, 'product_belongstomany_app_category_relationship', 'relationship', 'app_categories', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Category\",\"table\":\"app_categories\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"category_product\",\"pivot\":\"1\",\"taggable\":\"on\"}', 11),
+(45, 7, 'id', 'text', 'Id', 1, 1, 1, 0, 0, 0, '{}', 1),
+(46, 7, 'user_id', 'text', 'User Id', 0, 1, 1, 1, 1, 1, '{}', 2),
+(47, 7, 'billing_email', 'text', 'Billing Email', 1, 1, 1, 1, 1, 1, '{}', 3),
+(48, 7, 'billing_name', 'text', 'Billing Name', 1, 1, 1, 1, 1, 1, '{}', 4),
+(49, 7, 'billing_address', 'text', 'Billing Address', 1, 1, 1, 1, 1, 1, '{}', 5),
+(50, 7, 'billing_city', 'text', 'Billing City', 1, 1, 1, 1, 1, 1, '{}', 6),
+(51, 7, 'billing_province', 'text', 'Billing Province', 1, 1, 1, 1, 1, 1, '{}', 7),
+(52, 7, 'billing_phone', 'text', 'Billing Phone', 1, 1, 1, 1, 1, 1, '{}', 8),
+(53, 7, 'billing_name_on_card', 'text', 'Name On Card', 1, 1, 1, 1, 1, 1, '{}', 9),
+(54, 7, 'billing_discount', 'number', 'Billing Discount', 1, 1, 1, 1, 1, 1, '{}', 10),
+(55, 7, 'billing_discount_code', 'text', 'Billing Discount Code', 0, 1, 1, 1, 1, 1, '{}', 11),
+(56, 7, 'billing_subtotal', 'number', 'Billing Subtotal', 1, 1, 1, 1, 1, 1, '{}', 12),
+(57, 7, 'billing_tax', 'number', 'Billing Tax', 1, 1, 1, 1, 1, 1, '{}', 13),
+(58, 7, 'billing_total', 'number', 'Billing Total', 1, 1, 1, 1, 1, 1, '{}', 14),
+(59, 7, 'payment_gateway', 'text', 'Payment Gateway', 1, 1, 1, 1, 1, 1, '{}', 15),
+(60, 7, 'shipped', 'checkbox', 'Shipped', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\"}', 16),
+(61, 7, 'error', 'text', 'Error', 0, 1, 1, 1, 1, 1, '{}', 17),
+(62, 7, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, '{}', 18),
+(63, 7, 'updated_at', 'timestamp', 'Updated At', 0, 1, 1, 0, 0, 1, '{}', 19),
+(64, 7, 'order_belongstomany_product_relationship', 'relationship', 'products', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Product\",\"table\":\"products\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"order_product\",\"pivot\":\"1\",\"taggable\":\"on\"}', 20),
+(65, 7, 'order_belongsto_user_relationship', 'relationship', 'user', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"email\",\"pivot_table\":\"app_categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 21);
 
 -- --------------------------------------------------------
 
@@ -302,7 +323,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-06-04 14:09:47', '2020-06-04 14:09:47'),
 (4, 'app_categories', 'app-categories', 'App Category', 'App Categories', 'voyager-categories', 'App\\Category', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-06-04 14:14:41', '2020-06-04 14:14:41'),
 (5, 'coupons', 'coupons', 'Coupon', 'Coupons', 'voyager-dollar', 'App\\Coupon', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-06-04 14:19:11', '2020-06-04 14:32:27'),
-(6, 'products', 'products', 'Product', 'Products', 'voyager-folder', 'App\\Product', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-06-04 14:23:14', '2020-06-04 14:47:03');
+(6, 'products', 'products', 'Product', 'Products', 'voyager-folder', 'App\\Product', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-06-04 14:23:14', '2020-06-04 14:47:03'),
+(7, 'orders', 'orders', 'Order', 'Orders', 'voyager-documentation', 'App\\Order', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-06-10 17:57:27', '2020-06-10 18:19:19');
 
 -- --------------------------------------------------------
 
@@ -367,19 +389,20 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2020-06-04 14:09:48', '2020-06-04 14:09:48', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 7, '2020-06-04 14:09:48', '2020-06-04 14:33:27', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 6, '2020-06-04 14:09:49', '2020-06-04 14:33:27', 'voyager.users.index', NULL),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 5, '2020-06-04 14:09:49', '2020-06-04 14:33:27', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 8, '2020-06-04 14:09:49', '2020-06-04 14:33:27', NULL, NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 8, '2020-06-04 14:09:48', '2020-06-10 18:11:17', 'voyager.media.index', NULL),
+(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 7, '2020-06-04 14:09:49', '2020-06-10 18:11:17', 'voyager.users.index', NULL),
+(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 6, '2020-06-04 14:09:49', '2020-06-10 18:11:17', 'voyager.roles.index', NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2020-06-04 14:09:49', '2020-06-10 18:11:17', NULL, NULL),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2020-06-04 14:09:49', '2020-06-04 14:33:17', 'voyager.menus.index', NULL),
 (7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2020-06-04 14:09:49', '2020-06-04 14:33:17', 'voyager.database.index', NULL),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2020-06-04 14:09:49', '2020-06-04 14:33:17', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2020-06-04 14:09:49', '2020-06-04 14:33:17', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 9, '2020-06-04 14:09:49', '2020-06-04 14:33:28', 'voyager.settings.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2020-06-04 14:09:49', '2020-06-10 18:11:17', 'voyager.settings.index', NULL),
 (11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2020-06-04 14:09:51', '2020-06-04 14:33:18', 'voyager.hooks', NULL),
-(12, 1, 'App Categories', '', '_self', 'voyager-categories', NULL, NULL, 2, '2020-06-04 14:14:42', '2020-06-04 14:33:17', 'voyager.app-categories.index', NULL),
-(13, 1, 'Coupons', '', '_self', 'voyager-dollar', NULL, NULL, 4, '2020-06-04 14:19:11', '2020-06-04 14:33:27', 'voyager.coupons.index', NULL),
-(14, 1, 'Products', '', '_self', 'voyager-folder', NULL, NULL, 3, '2020-06-04 14:23:15', '2020-06-04 14:33:27', 'voyager.products.index', NULL);
+(12, 1, 'App Categories', '', '_self', 'voyager-categories', NULL, NULL, 3, '2020-06-04 14:14:42', '2020-06-10 18:11:17', 'voyager.app-categories.index', NULL),
+(13, 1, 'Coupons', '', '_self', 'voyager-dollar', NULL, NULL, 5, '2020-06-04 14:19:11', '2020-06-10 18:11:17', 'voyager.coupons.index', NULL),
+(14, 1, 'Products', '', '_self', 'voyager-folder', NULL, NULL, 4, '2020-06-04 14:23:15', '2020-06-10 18:11:17', 'voyager.products.index', NULL),
+(15, 1, 'Orders', '', '_self', 'voyager-documentation', NULL, NULL, 2, '2020-06-10 17:57:28', '2020-06-10 18:11:17', 'voyager.orders.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -450,15 +473,28 @@ CREATE TABLE `orders` (
   `billing_name_on_card` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `billing_discount` int(11) NOT NULL DEFAULT '0',
   `billing_discount_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `billing_subtotal` int(11) NOT NULL,
-  `billing_tax` int(11) NOT NULL,
-  `billing_total` int(11) NOT NULL,
+  `billing_subtotal` float NOT NULL,
+  `billing_tax` float NOT NULL,
+  `billing_total` float NOT NULL,
   `payment_gateway` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'stripe',
   `shipped` tinyint(1) NOT NULL DEFAULT '0',
   `error` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `billing_email`, `billing_name`, `billing_address`, `billing_city`, `billing_province`, `billing_phone`, `billing_name_on_card`, `billing_discount`, `billing_discount_code`, `billing_subtotal`, `billing_tax`, `billing_total`, `payment_gateway`, `shipped`, `error`, `created_at`, `updated_at`) VALUES
+(2, 1, 'samy@email.com', 'Kamal', '11 wael, srour st', 'Sharijah', 'Sharijah', '01025687556', 'Samy Muhammad', 0, NULL, 6802, 952, 7754, 'stripe', 0, NULL, '2020-06-10 10:37:26', '2020-06-10 10:37:26'),
+(3, 1, 'samy@email.com', 'Ali', '11 wael, srour st', 'foo', 'Daqahlia', '01025687556', 'Qabil Saad', 20, 'percent123', 59, 8, 67, 'stripe', 0, NULL, '2020-06-10 10:43:20', '2020-06-10 10:43:20'),
+(4, 1, 'samy@email.com', 'Cool Name', '22 cool st', 'myCity', 'Safa', '01025687556', 'Cool Name', 0, NULL, 99, 14, 113, 'stripe', 0, 'Your card has expired.', '2020-06-10 10:56:16', '2020-06-10 10:56:16'),
+(5, 1, 'samy@email.com', 'Kamal', '11 wael, srour st', 'Sharijah', 'Daqahlia', '01025687556', 'Qabil Ma7roos', 30, 'fixed123', 69, 10, 79, 'stripe', 0, NULL, '2020-06-10 10:58:43', '2020-06-10 10:58:43'),
+(6, 1, 'samy@email.com', 'Dandy', '11 Hassan, Adel st', 'myCity', 'Daqahlia', '01025687556', 'Ali Ali', 0, NULL, 771, 107.94, 878.94, 'stripe', 0, NULL, '2020-06-10 19:34:47', '2020-06-10 19:34:47'),
+(7, 2, 'ahmed@email.com', 'Ahmed', '11 Hassan, Adel st', 'Mit Ghamr', 'Alexandria', '01025687556', 'Ahmed Ibrahim', 0, NULL, 2268, 317.52, 2585.52, 'stripe', 0, NULL, '2020-06-11 09:33:16', '2020-06-11 09:33:16'),
+(8, 2, 'ahmed@email.com', 'Ahmed', '11 Hassan, Adel st', 'Mit Ghamr', 'Alexandria', '01025687556', 'Ahmed Ibrahim', 0, NULL, 2268, 317.52, 2585.52, 'stripe', 0, NULL, '2020-06-11 09:35:28', '2020-06-11 09:35:28');
 
 -- --------------------------------------------------------
 
@@ -474,6 +510,23 @@ CREATE TABLE `order_product` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_product`
+--
+
+INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, 2, '2020-06-10 10:37:26', '2020-06-10 10:37:26'),
+(2, 2, 69, 3, '2020-06-10 10:37:26', '2020-06-10 10:37:26'),
+(3, 2, 24, 1, '2020-06-10 10:37:26', '2020-06-10 10:37:26'),
+(4, 3, 54, 1, '2020-06-10 10:43:20', '2020-06-10 10:43:20'),
+(5, 4, 69, 1, '2020-06-10 10:56:16', '2020-06-10 10:56:16'),
+(6, 5, 69, 1, '2020-06-10 10:58:43', '2020-06-10 10:58:43'),
+(7, 6, 26, 1, '2020-06-10 19:34:48', '2020-06-10 19:34:48'),
+(8, 7, 80, 1, '2020-06-11 09:33:17', '2020-06-11 09:33:17'),
+(9, 7, 6, 1, '2020-06-11 09:33:17', '2020-06-11 09:33:17'),
+(10, 8, 80, 1, '2020-06-11 09:35:28', '2020-06-11 09:35:28'),
+(11, 8, 6, 1, '2020-06-11 09:35:29', '2020-06-11 09:35:29');
 
 -- --------------------------------------------------------
 
@@ -567,7 +620,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (38, 'read_products', 'products', '2020-06-04 14:23:14', '2020-06-04 14:23:14'),
 (39, 'edit_products', 'products', '2020-06-04 14:23:14', '2020-06-04 14:23:14'),
 (40, 'add_products', 'products', '2020-06-04 14:23:14', '2020-06-04 14:23:14'),
-(41, 'delete_products', 'products', '2020-06-04 14:23:14', '2020-06-04 14:23:14');
+(41, 'delete_products', 'products', '2020-06-04 14:23:14', '2020-06-04 14:23:14'),
+(42, 'browse_orders', 'orders', '2020-06-10 17:57:27', '2020-06-10 17:57:27'),
+(43, 'read_orders', 'orders', '2020-06-10 17:57:27', '2020-06-10 17:57:27'),
+(44, 'edit_orders', 'orders', '2020-06-10 17:57:27', '2020-06-10 17:57:27'),
+(45, 'add_orders', 'orders', '2020-06-10 17:57:27', '2020-06-10 17:57:27'),
+(46, 'delete_orders', 'orders', '2020-06-10 17:57:27', '2020-06-10 17:57:27');
 
 -- --------------------------------------------------------
 
@@ -624,7 +682,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (38, 1),
 (39, 1),
 (40, 1),
-(41, 1);
+(41, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(46, 1);
 
 -- --------------------------------------------------------
 
@@ -853,7 +916,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Samy', 'samy@email.com', 'users/default.png', NULL, '$2y$10$8LSON1lJnQl7v9jR4v8..OJ4wLMlsoK12zm23bXnwS5H1Wwfi0oHO', 'oKbtTP5H2KSydj5arxXTNaQZXSj0n3ORVq0r3vy9XgOkZjczK5eNq4codFaH', NULL, '2020-06-04 14:03:55', '2020-06-04 14:03:55');
+(1, 1, 'Samy', 'samy@email.com', 'users/default.png', NULL, '$2y$10$8LSON1lJnQl7v9jR4v8..OJ4wLMlsoK12zm23bXnwS5H1Wwfi0oHO', 'yJdSfl7yv7EGtNg0p7myFvTtw3WEfshDQ41WJjSCN9anRkyFimHtYqhc3rqW', NULL, '2020-06-04 14:03:55', '2020-06-04 14:03:55'),
+(2, 2, 'Ahmed', 'ahmed@email.com', 'users/default.png', NULL, '$2y$10$cvsOSlAFqVeFw0JeCkFPyepr0ALWVT9Pd4NxG/60chBLqw0fkMogO', NULL, NULL, '2020-06-11 09:31:00', '2020-06-11 09:31:00');
 
 -- --------------------------------------------------------
 
@@ -1069,13 +1133,13 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1093,7 +1157,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1105,13 +1169,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -1123,7 +1187,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -1159,7 +1223,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
