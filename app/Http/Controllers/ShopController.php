@@ -129,7 +129,9 @@ class ShopController extends Controller
 /*        $products = Product::where('name', 'like', "%$query%")
                             ->orWhere('details', 'like', "%$query%")
                             ->orWhere('description', 'like', "%$query%")
-                            ->paginate(8);*/
+                            ->paginate(8);
+
+*/
 
 
         // Using Searchable Packege

@@ -171,6 +171,11 @@ class CheckoutController extends Controller
         $discount = session('coupon')['discount'] ?? 0;
         $code = session('coupon')['name'] ?? null;
         $newSubtotal = Cart::subtotal() - $discount;
+        // To deal with "-" if discount is more than the product price.
+        if ($newSubtotal < 0) {
+            $newSubtotal = 0;
+        }
+
         $newTax = $newSubtotal * $taxPercentage;
         $newTotal = $newSubtotal + $newTax;
 

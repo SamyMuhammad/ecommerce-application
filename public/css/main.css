@@ -3925,7 +3925,7 @@ label {
         -webkit-text-fill-color: #555; }
     .s_product_text .list li:last-child {
       margin-bottom: 0px; }
-  .s_product_text p {
+  .s_product_text .prod_pragraph {
     padding-top: 20px;
     border-top: 1px dotted #d5d5d5;
     margin-top: 20px;

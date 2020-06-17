@@ -43,6 +43,7 @@ Route::get('do', function () {
 	/*
 	update products set image = 'products/June2020/6UM0m4lC1G15LaOxhl6N.jpg' where id between 62 and 80;
 	*/
+	\Cart::destroy();
 });
 
 

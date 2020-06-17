@@ -65,8 +65,8 @@
 					<div class="s_product_text">
 						<h3>{{ $product->name }}</h3>
 						<h2>${{ $product->price }}</h2>
-						<p>{{ $product->details }}</p>
-						<p>{!! $product->description !!}</p>
+						<p class="prod_pragraph">{{ $product->details }}</p>
+						<p class="prod_pragraph">{!! $product->description !!}</p>
 						
 						<div class="card_area d-flex align-items-center">
 							<form action="{{ route('cart.store') }}" method="POST">

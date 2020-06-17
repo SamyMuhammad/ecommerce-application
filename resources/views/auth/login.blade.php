@@ -1,5 +1,7 @@
 @extends('layouts.theme')
 
+@section('title', 'Login')
+
 @section('content')
 
 <!-- Start Banner Area -->
