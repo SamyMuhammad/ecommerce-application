@@ -39,6 +39,14 @@ Route::post('checkout', 'CheckoutController@store')->name('checkout.store');
 
 Route::get('confirmation', 'ConfirmationController@index')->name('confirmation.index');
 
+Route::middleware('auth')->group(function (){
+
+	Route::get('/my-profile', 'UsersController@edit')->name('users.edit');
+	Route::patch('/my-profile', 'UsersController@update')->name('users.update');
+
+	Route::get('/my-orders', 'OrdersController@index')->name('orders.index');
+});
+
 Route::get('do', function () {
 	/*
 	update products set image = 'products/June2020/6UM0m4lC1G15LaOxhl6N.jpg' where id between 62 and 80;

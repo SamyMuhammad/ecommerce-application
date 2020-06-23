@@ -135,7 +135,7 @@
 							<div class="single-product">
 								<a href="{{ route('shop.show', $product->slug) }}">
 									<div class="image-container">
-									<img class="product-img" src="{{ asset('storage/' . $product->image) }}" alt="">
+									<img class="" src="{{ asset('storage/' . $product->image) }}" alt="">
 									</div>
 								</a>	
 								<div class="product-details">

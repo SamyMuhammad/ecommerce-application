@@ -22,10 +22,10 @@ class CheckoutController extends Controller
     public function index()
     {
         return view('checkout')->with([
-            'discount' => $this->getNumbers()->get('discount'),
-            'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
-            'newTax' => $this->getNumbers()->get('newTax'),
-            'newTotal' => $this->getNumbers()->get('newTotal')
+            'discount' => getNumbers()->get('discount'),
+            'newSubtotal' => getNumbers()->get('newSubtotal'),
+            'newTax' => getNumbers()->get('newTax'),
+            'newTotal' => getNumbers()->get('newTotal')
         ]);
     }
 
@@ -54,7 +54,7 @@ class CheckoutController extends Controller
 
         try {
             $sharge = Stripe::charges()->create([
-                'amount' => $this->getNumbers()->get('newTotal'),
+                'amount' => getNumbers()->get('newTotal'),
                 'currency' => 'USD',
                 'source' => $request->stripeToken,
                 'description' =>'Order',
@@ -74,9 +74,9 @@ class CheckoutController extends Controller
             return redirect()->route('confirmation.index')
                         ->with('success', 'Thank you! Your payment has been successfully accepted!')
                         ->with([
-                            'subtotal' => $this->getNumbers()->get('newSubtotal'),
-                            'tax' => $this->getNumbers()->get('newTax'),
-                            'total' => $this->getNumbers()->get('newTotal')
+                            'subtotal' => getNumbers()->get('newSubtotal'),
+                            'tax' => getNumbers()->get('newTax'),
+                            'total' => getNumbers()->get('newTotal')
                         ]);
         } catch (CardErrorException $e) {
 
@@ -145,11 +145,11 @@ class CheckoutController extends Controller
                     'billing_province' => $request->province,
                     'billing_phone' => $request->phone,
                     'billing_name_on_card' => $request->name_on_card,
-                    'billing_discount' => $this->getNumbers()->get('discount'),
-                    'billing_discount_code' => $this->getNumbers()->get('code'),
-                    'billing_subtotal' => $this->getNumbers()->get('newSubtotal'),
-                    'billing_tax' => $this->getNumbers()->get('newTax'),
-                    'billing_total' => $this->getNumbers()->get('newTotal'),
+                    'billing_discount' => getNumbers()->get('discount'),
+                    'billing_discount_code' => getNumbers()->get('code'),
+                    'billing_subtotal' => getNumbers()->get('newSubtotal'),
+                    'billing_tax' => getNumbers()->get('newTax'),
+                    'billing_total' => getNumbers()->get('newTotal'),
                     'error' => $error
                 ]);
 
@@ -163,29 +163,5 @@ class CheckoutController extends Controller
         }
 
         return $order;
-    }
-
-    private function getNumbers()
-    {
-        $taxPercentage = config('cart.tax') / 100;
-        $discount = session('coupon')['discount'] ?? 0;
-        $code = session('coupon')['name'] ?? null;
-        $newSubtotal = Cart::subtotal() - $discount;
-        // To deal with "-" if discount is more than the product price.
-        if ($newSubtotal < 0) {
-            $newSubtotal = 0;
-        }
-
-        $newTax = $newSubtotal * $taxPercentage;
-        $newTotal = $newSubtotal + $newTax;
-
-        return collect([
-            'taxPercentage' =>$taxPercentage,
-            'discount' => $discount,
-            'code' => $code,
-            'newSubtotal' => $newSubtotal,
-            'newTax' => $newTax,
-            'newTotal' => $newTotal
-        ]);
     }
 }

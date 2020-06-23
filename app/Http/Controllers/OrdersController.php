@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Coupon;
-use App\Jobs\UpdateCoupon;
 
-class CouponsController extends Controller
+class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,9 @@ class CouponsController extends Controller
      */
     public function index()
     {
-        //
+        $orders = auth()->user()->orders()->with('products')->get();
+
+        return view('my-orders', compact('orders'));
     }
 
     /**
@@ -36,16 +36,7 @@ class CouponsController extends Controller
      */
     public function store(Request $request)
     {
-        $coupon = Coupon::findByCode($request->coupon_code);
-
-        if (! $coupon) {
-
-            return redirect()->route('checkout.index')->withErrors('Invalid coupon code. please try again.');
-        }
-
-        dispatch_now(new UpdateCoupon($coupon));
-        
-        return redirect()->route('cart.index')->with('success', 'Coupon has been aplied!');
+        //
     }
 
     /**
@@ -85,12 +76,11 @@ class CouponsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        session()->forget('coupon');
-
-        return redirect()->route('cart.index')->with('success', 'Coupon has been removed!');
+        //
     }
 }

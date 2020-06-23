@@ -90,20 +90,7 @@
 
     <!--================Checkout Area =================-->
     <section class="checkout_area section_gap">
-        <div class="container">
-            {{-- Coupon Area --}}
-            @if (! session()->has('coupon'))
-                <div class="cupon_area">
-                    <div class="check_title">
-                        <h2>Have a coupon?</h2>
-                    </div>
-                    <form method="POST" action="{{ route('coupon.store') }}">
-                        @csrf
-                        <input type="text" name="coupon_code" placeholder="Enter coupon code" value="{{ old('coupon_code') }}">
-                        <button type="submit" class="tp_btn">Apply Coupon</button>
-                    </form>   
-                </div>
-            @endif    
+        <div class="container">  
             <div class="billing_details">
                 <div class="row">
                     <div class="col-lg-8">

@@ -15,7 +15,12 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart');
+        return view('cart', [
+            'discount' => getNumbers()->get('discount'),
+            'newSubtotal' => getNumbers()->get('newSubtotal'),
+            'newTax' => getNumbers()->get('newTax'),
+            'newTotal' => getNumbers()->get('newTotal')
+        ]);
     }
 
     /**

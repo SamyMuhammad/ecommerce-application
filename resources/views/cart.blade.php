@@ -8,6 +8,14 @@
             width: 150px;
             height: 100px;
         }
+        .btn-to-link{
+            background-color: inherit;
+            border: none;
+            color: blue;
+            text-decoration: underline;
+            font-size: 12px;
+            cursor: pointer;
+        }
     </style>
 @endsection
 
@@ -120,6 +128,41 @@
                                     <td>
                                         <h5>${{ Cart::subtotal() }}</h5>
                                     </td>
+                                    @if (session()->has('coupon'))
+                                        <tr>
+                                            <td>
+                                                <h5>Coupon ({{ session('coupon')['name'] }})</h5>
+
+                                                <form action="{{ route('coupon.destroy') }}" method="POST"
+                                                style="display: inline;">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn-to-link">Remove</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <h5>Discount</h5>
+                                            </td>
+                                            <td>
+                                                <h5>- ${{ $discount }}</h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>    
+                                            </td>
+                                            <td>
+                                                <h5>New Subtotal</h5>
+                                            </td>
+                                            <td>
+                                                <h5>${{ $newSubtotal }}</h5>
+                                            </td>
+                                        </tr>
+                                        
+                                    @endif
                                 </tr>
 
                                 <tr>
@@ -133,7 +176,7 @@
                                         <h5>Tax(14%)</h5>
                                     </td>
                                     <td>
-                                        <h5>${{ Cart::tax() }}</h5>
+                                        <h5>${{ $newTax }}</h5>
                                     </td>
                                 </tr>
                                 
@@ -148,20 +191,30 @@
                                         <h5>Total</h5>
                                     </td>
                                     <td>
-                                        <h5>${{ Cart::total() }}</h5>
+                                        <h5>${{ $newTotal }}</h5>
                                     </td>
                                 </tr>
 
                                 </tr>
                                 <tr class="out_button_area">
                                     <td>
-
+                                        {{-- Coupon Area --}}
+                                        @if (! session()->has('coupon'))
+                                            <div class="cupon_area">
+                                                <div class="check_title">
+                                                    <h2>Have a coupon?</h2>
+                                                </div>
+                                                <form method="POST" action="{{ route('coupon.store') }}">
+                                                    @csrf
+                                                    <input type="text" name="coupon_code" placeholder="Enter coupon code" value="{{ old('coupon_code') }}">
+                                                    <button type="submit" class="tp_btn">Apply Coupon</button>
+                                                </form>   
+                                            </div>  
+                                        @endif
                                     </td>
                                     <td>
-
                                     </td>
                                     <td>
-
                                     </td>
                                     <td>
                                         <div class="checkout_btn_inner d-flex align-items-center">

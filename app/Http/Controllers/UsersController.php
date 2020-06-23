@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Coupon;
-use App\Jobs\UpdateCoupon;
 
-class CouponsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,16 +34,7 @@ class CouponsController extends Controller
      */
     public function store(Request $request)
     {
-        $coupon = Coupon::findByCode($request->coupon_code);
-
-        if (! $coupon) {
-
-            return redirect()->route('checkout.index')->withErrors('Invalid coupon code. please try again.');
-        }
-
-        dispatch_now(new UpdateCoupon($coupon));
-        
-        return redirect()->route('cart.index')->with('success', 'Coupon has been aplied!');
+        //
     }
 
     /**
@@ -62,35 +51,52 @@ class CouponsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('my-profile', [
+            'user' => auth()->user()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.auth()->id()],
+            'password' => ['sometimes', 'nullable', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = auth()->user();
+        $input = $request->except('password', 'password_confirmation');
+
+        if (! $request->filled('password')) {
+            $user->fill($input)->save();
+
+            return back()->with('success', 'Profile updated successfully!');
+        }
+
+        $user->password = bcrypt($request->password);
+        $user->fill($input)->save();
+        
+        return back()->with('success', 'Profile updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        session()->forget('coupon');
-
-        return redirect()->route('cart.index')->with('success', 'Coupon has been removed!');
+        //
     }
 }
