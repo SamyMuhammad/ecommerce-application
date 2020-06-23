@@ -14,32 +14,36 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', 'LandingPageController@index')->name('landing-page');
+Route::middleware('restore.cart')->group(function (){
+	
+	Route::get('/', 'LandingPageController@index')->name('landing-page');
 
-Route::get('/shop', 'ShopController@index')->name('shop.index');
-Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
-Route::get('/search', 'ShopController@search')->name('search');
+	Route::get('/shop', 'ShopController@index')->name('shop.index');
+	Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
+	Route::get('/search', 'ShopController@search')->name('search');
+});
 
-Route::get('/cart', 'CartController@index')->name('cart.index');
-Route::post('/cart', 'CartController@store')->name('cart.store');
-Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
-Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
-Route::post('/cart/save-for-later/{product}', 'CartController@saveForLater')->name('cart.saveForLater');
+Route::middleware(['auth', 'restore.cart'])->group(function (){
 
-Route::delete('/save-for-later/{product}', 'SaveForLaterController@destroy')
-		->name('saveForLater.destroy');
-Route::post('/save-for-later/add-to-cart/{product}', 'SaveForLaterController@addToCart')
-		->name('saveForLater.addToCart');
+	Route::get('/cart', 'CartController@index')->name('cart.index');
+	Route::post('/cart', 'CartController@store')->name('cart.store');
+	Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
+	Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
+	Route::post('/cart/save-for-later/{product}', 'CartController@saveForLater')
+			->name('cart.saveForLater');
 
-Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
-Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
+	Route::delete('/save-for-later/{product}', 'SaveForLaterController@destroy')
+			->name('saveForLater.destroy');
+	Route::post('/save-for-later/add-to-cart/{product}', 'SaveForLaterController@addToCart')
+			->name('saveForLater.addToCart');
 
-Route::get('checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');	
-Route::post('checkout', 'CheckoutController@store')->name('checkout.store');
+	Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
+	Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
-Route::get('confirmation', 'ConfirmationController@index')->name('confirmation.index');
+	Route::get('checkout', 'CheckoutController@index')->name('checkout.index');	
+	Route::post('checkout', 'CheckoutController@store')->name('checkout.store');
 
-Route::middleware('auth')->group(function (){
+	Route::get('confirmation', 'ConfirmationController@index')->name('confirmation.index');
 
 	Route::get('/my-profile', 'UsersController@edit')->name('users.edit');
 	Route::patch('/my-profile', 'UsersController@update')->name('users.update');
@@ -51,13 +55,14 @@ Route::get('do', function () {
 	/*
 	update products set image = 'products/June2020/6UM0m4lC1G15LaOxhl6N.jpg' where id between 62 and 80;
 	*/
-	\Cart::destroy();
+	// \Cart::destroy();
+	dd(session()->all());
 });
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['prefix' => 'admin'], function () {
