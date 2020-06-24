@@ -42,8 +42,12 @@ class CartUpdatedListener
         }
         
         // Store Cart in DB after Changes.
+        $identifier = auth()->id();
+        $instance = Cart::currentInstance();
 
-        //DB::table('shoppingcart')->where('identifier', auth()->id())->delete();
+        Cart::instance($instance)->deleteOldToStoreNew($identifier);
+
+        Cart::instance($instance)->store($identifier);        
 
     }
 }

@@ -17,13 +17,11 @@ class RestoreCart
     public function handle($request, Closure $next)
     {   
 
-        if (auth()->check() && ! session()->has('cart')) {
-            
-            // if (\DB::table('shoppingcart')->where('identifier', auth()->id())->exists()) {
-                
-                Cart::restore(auth()->id());
-                Cart::instance('saveForLater')->restore(auth()->id());
-            // }
+        if (auth()->check() && ! session()->has('cart')) { 
+
+            $identifier = auth()->id();
+            Cart::instance('default')->restore($identifier);
+            Cart::instance('saveForLater')->restore($identifier);
         }
 
         return $next($request);

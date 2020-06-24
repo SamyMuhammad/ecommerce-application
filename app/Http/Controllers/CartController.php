@@ -49,7 +49,7 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('success', 'Item already exists in your cart!');
         }
 
-        Cart::add($request->id, $request->name, 1, $request->price)
+        Cart::instance('default')->add($request->id, $request->name, 1, $request->price)
             ->associate('App\Product');
 
         // Cart::store(auth()->id());    
