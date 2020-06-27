@@ -2,6 +2,10 @@
 
 @section('title', 'Search Results')
 
+@section('extra-css')
+	<link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}">
+@endsection
+
 @section('content')
 	<!-- Start Banner Area -->
 	<section class="banner-area organic-breadcrumb">
@@ -59,15 +63,17 @@
 										</div>
 										<div class="prd-bottom">
 
-											<a href="" class="social-info">
-												<span class="ti-bag"></span>
-												<p class="hover-text">add to bag</p>
+											<a href="" onclick="document.getElementById('cartAdding').submit(); return false;" class="cart-icon">
+												<i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><span class="text">Add to Cart</span>
 											</a>
-											<a href="" class="social-info">
-												<span class="lnr lnr-heart"></span>
-												<p class="hover-text">Save for later</p>
-											</a>
-											
+											<form action="{{ route('cart.store') }}" method="POST" id="cartAdding" class="hidden-form">
+												@csrf
+												<input type="hidden" name="id" value="{{$product->id}}">
+												<input type="hidden" name="name" value="{{$product->name}}">
+												<input type="hidden" name="price" value="{{$product->price}}">
+												<button type="submit" class="primary-btn">Add to Cart</button>
+											</form>
+
 										</div>
 									</div>
 								</div>

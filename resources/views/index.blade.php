@@ -3,22 +3,7 @@
 @section('title', 'Ecommerce - app')
 
 @section('extra-css')
-	<style type="text/css">
-
-		/*.product-img{
-			width: 300px;
-			height: 260px;
-		}*/
-		.ban-img{
-			width: 650px;
-			height: 400px;
-		}
-		.image-container{
-			width: 255px;
-			height: 255px;
-		}
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}">
 @endsection
 
 @section('content')
@@ -32,9 +17,9 @@
 						<div class="row single-slide align-items-center d-flex">
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
-									<h1>Welcome to Ecommerce <br>Laravel App!</h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+									<h1>Welcome to Ecommerce <br>Application!</h1>
+									<p>This application was built by <span id="author">Samy Muhammad</span> using Laravel framework and Stripe integretion for the checkout.</p>
+									<a class="genric-btn primary radius custom-btn" target="_blank" href="https://github.com/SamyMuhammad/ecommerce-application">Github</a>
 								</div>
 							</div>
 							<div class="col-lg-7">
@@ -154,44 +139,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- single product slide -->
-		{{-- <div class="single-product-slider">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6 text-center">
-						<div class="section-title">
-							<h1>A Great Collection</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-								dolore
-								magna aliqua.</p>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<!-- single product -->
-					@forelse ($products->take(-8) as $product)
-						<div class="col-lg-3 col-sm-6">
-							<div class="single-product">
-								<a href="{{ route('shop.show', $product->slug) }}">
-									<img class="product-img" src="{{ asset('storage/' . $product->image) }}" alt="">
-								</a>	
-								<div class="product-details">
-									<a href="{{ route('shop.show', $product->slug) }}">
-										<h6>{{ $product->name }}</h6>
-									</a>	
-									<div class="price">
-										<h6>${{ $product->price }}</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-					@empty
-						<h6>No Products yet</h6>
-					@endforelse	
-				</div>
-			</div>
-		</div> --}}
 	</section>
 	<!-- end product Area -->
 

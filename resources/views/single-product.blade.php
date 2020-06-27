@@ -26,7 +26,7 @@
 				<div class="col-first">
 					<h1>{{ $product->name }}</h1>
 					<nav class="d-flex align-items-center">
-						<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="{{ route('landing-page') }}">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
 						<a href="single-product.html">{{ $product->name }}</a>
 					</nav>

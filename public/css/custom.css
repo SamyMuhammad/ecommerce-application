@@ -1,0 +1,40 @@
+
+
+#author{
+	color: #FF6D00
+}
+.ban-img{
+	width: 650px;
+	height: 400px;
+}
+.image-container{
+	width: 255px;
+	height: 200px;
+}
+.product-details{
+	text-align: center;
+}
+.custom-btn{
+	margin: 10px auto;
+	font-size: 1em;
+}
+.shop-sidebar{
+	margin-top: 30px;
+}
+.hidden-form{
+	display: none;
+}
+.cart-icon {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	color: #828bb3;
+}
+.cart-icon:hover {
+	color: #FF6D00;
+}
+.cart-icon .text{
+	color: #6c757d;
+	margin-left: 3px;
+	font-size: 20px;
+}

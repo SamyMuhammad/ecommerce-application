@@ -83,7 +83,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="genric-btn primary btn">
+                                    <button style="font-size: 1em;" type="submit" class="genric-btn primary btn">
                                         {{ __('Register') }}
                                     </button>
                                 </div>

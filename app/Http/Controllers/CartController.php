@@ -42,7 +42,7 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $dublicates = Cart::search(function ($cartItem, $rowId) use ($request){
-            return $cartItem->id === $request->id;
+            return $cartItem->id == $request->id;
         });
 
         if ($dublicates->isNotEmpty()) {
