@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Gloudemans\Shoppingcart\Facades\ApiCart;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Route::middleware(['auth', 'restore.cart'])->group(function (){
 	Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
 	Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
-	Route::get('checkout', 'CheckoutController@index')->name('checkout.index');	
+	Route::get('checkout', 'CheckoutController@index')->name('checkout.index')->middleware('CartHasItems');	
 	Route::post('checkout', 'CheckoutController@store')->name('checkout.store');
 
 	Route::get('confirmation', 'ConfirmationController@index')->name('confirmation.index');
@@ -56,7 +57,8 @@ Route::get('do', function () {
 	update products set image = 'products/June2020/6UM0m4lC1G15LaOxhl6N.jpg' where id between 62 and 80;
 	*/
 	// \Cart::destroy();
-	dd(session()->all());
+	// dd(session()->all());
+	return ApiCart::count();
 });
 
 

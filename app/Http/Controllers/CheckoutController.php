@@ -60,7 +60,7 @@ class CheckoutController extends Controller
                 'description' =>'Order',
                 // 'receipt_email' => '',
                 'metadata' => [
-                    // Change to Order Id when we start using DB
+                    
                     'contents' => $contents,
                     'quantity' => Cart::instance('default')->count(),
                     'discount' => collect(session('coupon'))->toJson()

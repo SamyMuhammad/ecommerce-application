@@ -3,20 +3,7 @@
 @section('title', 'Cart')
 
 @section('extra-css')
-    <style type="text/css">
-        .cart-image{
-            width: 150px;
-            height: 100px;
-        }
-        .btn-to-link{
-            background-color: inherit;
-            border: none;
-            color: blue;
-            text-decoration: underline;
-            font-size: 12px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}">
 @endsection
 
 @section('content')

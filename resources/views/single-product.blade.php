@@ -7,7 +7,7 @@
 
 		.img-fluid{
 			width: 540px;
-			height: 500px;
+			height: 450px;
 		}
 
 		.mightLike-img{

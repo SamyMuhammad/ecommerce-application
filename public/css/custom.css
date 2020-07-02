@@ -21,8 +21,12 @@
 .shop-sidebar{
 	margin-top: 30px;
 }
-.hidden-form{
-	display: none;
+.hidden-form button{
+	background: none;
+	border: none;
+	display: inline;
+	cursor: pointer;
+	
 }
 .cart-icon {
 	position: relative;
@@ -36,5 +40,65 @@
 .cart-icon .text{
 	color: #6c757d;
 	margin-left: 3px;
-	font-size: 20px;
+	font-size: 17px;
+}
+.cart-image{
+    width: 150px;
+    height: 100px;
+}
+.btn-to-link{
+    background-color: inherit;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
+}
+.StripeElement {
+	box-sizing: border-box;
+
+	height: 40px;
+
+	padding: 10px 12px;
+
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: white;
+
+	box-shadow: 0 1px 3px 0 #e6ebf1;
+	-webkit-transition: box-shadow 150ms ease;
+	transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+	box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+	border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+	background-color: #fefde5 !important;
+}
+
+#card-errors{
+	color: #fa755a;
+}
+
+.btn-to-link{
+	background-color: inherit;
+	border: none;
+	color: blue;
+	text-decoration: underline;
+	font-size: 12px;
+	cursor: pointer;
+}
+.prices-head{
+	text-transform: uppercase;
+	color: #222222;
+	font-weight: 300;
+}
+.price-span{
+	float: right;
 }

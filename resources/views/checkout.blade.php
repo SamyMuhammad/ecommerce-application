@@ -4,56 +4,7 @@
 
 @section('extra-css')
     <script src="https://js.stripe.com/v3/"></script>
-    <style type="text/css">
-        .StripeElement {
-          box-sizing: border-box;
-
-          height: 40px;
-
-          padding: 10px 12px;
-
-          border: 1px solid transparent;
-          border-radius: 4px;
-          background-color: white;
-
-          box-shadow: 0 1px 3px 0 #e6ebf1;
-          -webkit-transition: box-shadow 150ms ease;
-          transition: box-shadow 150ms ease;
-        }
-
-        .StripeElement--focus {
-          box-shadow: 0 1px 3px 0 #cfd7df;
-        }
-
-        .StripeElement--invalid {
-          border-color: #fa755a;
-        }
-
-        .StripeElement--webkit-autofill {
-          background-color: #fefde5 !important;
-        }
-
-        #card-errors{
-            color: #fa755a;
-        }
-
-        .btn-to-link{
-            background-color: inherit;
-            border: none;
-            color: blue;
-            text-decoration: underline;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        .prices-head{
-            text-transform: uppercase;
-            color: #222222;
-            font-weight: 300;
-        }
-        .price-span{
-            float: right;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}">
 @endsection
 
 @section('content')
@@ -165,29 +116,7 @@
                                 <li><span class="prices-head">Tax (14%)<span class="price-span">${{ $newTax }}</span></span></li>
                                 <li><span class="prices-head" style="font-weight: 500">Total <span class="price-span">${{ $newTotal }}</span></span></li>
                             </ul>
-                            <div class="payment_item">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option5" name="selector">
-                                    <label for="f-option5">Check payments</label>
-                                    <div class="check"></div>
-                                </div>
-                                <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                            </div>
-                            <div class="payment_item active">
-                                <div class="radion_btn">
-                                    <input type="radio" id="f-option6" name="selector">
-                                    <label for="f-option6">Paypal </label>
-                                    <img src="img/product/card.jpg" alt="">
-                                    <div class="check"></div>
-                                </div>
-                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-                            </div>
-                            <div class="creat_account">
-                                <input type="checkbox" id="f-option4" name="selector">
-                                <label for="f-option4">I’ve read and accept the </label>
-                                <a href="#">terms & conditions*</a>
-                            </div>
-                            <a class="primary-btn" href="#">Proceed to Paypal</a>
+
                         </div>
                     </div>
                 </div>
@@ -197,95 +126,7 @@
     <!--================End Checkout Area =================-->
 
     @section('extra-js')
-        <script type="text/javascript">
-            (function () {
-                // Create a Stripe client.
-                var stripe = Stripe('pk_test_8P0Dmhvyk2OrDLDGGluJGDQB003VAlxU2G');
-
-                // Create an instance of Elements.
-                var elements = stripe.elements();
-
-                // Custom styling can be passed to options when creating an Element.
-                // (Note that this demo uses a wider set of styles than the guide below.)
-                var style = {
-                  base: {
-                    color: '#32325d',
-                    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                    fontSmoothing: 'antialiased',
-                    fontSize: '16px',
-                    '::placeholder': {
-                      color: '#aab7c4'
-                    }
-                  },
-                  invalid: {
-                    color: '#fa755a',
-                    iconColor: '#fa755a'
-                  }
-                };
-
-                // Create an instance of the card Element.
-                var card = elements.create('card', {style: style});
-
-                // Add an instance of the card Element into the `card-element` <div>.
-                card.mount('#card-element');
-
-                // Handle real-time validation errors from the card Element.
-                card.on('change', function(event) {
-                  var displayError = document.getElementById('card-errors');
-                  if (event.error) {
-                    displayError.textContent = event.error.message;
-                  } else {
-                    displayError.textContent = '';
-                  }
-                });
-
-                // Handle form submission.
-                var form = document.getElementById('payment-form');
-                form.addEventListener('submit', function(event) {
-                  event.preventDefault();
-
-                  //disable the submit button to prevent repeated clicks.
-                  document.getElementById('complete-order').disabled = true;
-
-                  var options = {
-                    name: document.getElementById('name_on_card').value,
-                    address_line1: document.getElementById('address').value,
-                    address_city: document.getElementById('city').value,
-                    address_state: document.getElementById('province').value
-                  }
-
-                  stripe.createToken(card, options).then(function(result) {
-                    if (result.error) {
-                      // Inform the user if there was an error.
-                      var errorElement = document.getElementById('card-errors');
-                      errorElement.textContent = result.error.message;
-
-                      //Enable the submit button
-                      document.getElementById('complete-order').disabled = false;
-
-                    } else {
-                      // Send the token to your server.
-                      stripeTokenHandler(result.token);
-                    }
-                  });
-                });
-
-                // Submit the form with the token ID.
-                function stripeTokenHandler(token) {
-                  // Insert the token ID into the form so it gets submitted to the server
-                  var form = document.getElementById('payment-form');
-                  var hiddenInput = document.createElement('input');
-                  hiddenInput.setAttribute('type', 'hidden');
-                  hiddenInput.setAttribute('name', 'stripeToken');
-                  hiddenInput.setAttribute('value', token.id);
-                  form.appendChild(hiddenInput);
-
-                  // Submit the form
-                  form.submit();
-                }
-            })();
-           
-        </script>
+        <script type="text/javascript" src="{{asset('js/stripe-checkout.js')}}"></script>
     @endsection
 
 @endsection

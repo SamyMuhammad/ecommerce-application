@@ -52,7 +52,6 @@ class CartController extends Controller
         Cart::instance('default')->add($request->id, $request->name, 1, $request->price)
             ->associate('App\Product');
 
-        // Cart::store(auth()->id());    
 
         return redirect()->route('cart.index')->with('success', 'Item was added to your cart!');    
     }
@@ -138,8 +137,7 @@ class CartController extends Controller
 
         Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price)
             ->associate('App\Product');
-
-        // Cart::instance('saveForLater')->store(auth()->id());    
+ 
 
         return redirect()->route('cart.index')->with('success', 'Item has been saved for later!');
     }

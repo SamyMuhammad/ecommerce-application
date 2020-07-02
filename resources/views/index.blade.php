@@ -18,7 +18,7 @@
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>Welcome to Ecommerce <br>Application!</h1>
-									<p>This application was built by <span id="author">Samy Muhammad</span> using Laravel framework and Stripe integretion for the checkout.</p>
+									<p>This application was built by <span id="author">Samy Muhammad</span> using Laravel framework and Stripe integretion for the checkout. Feel free to visit github repository for more information. </p>
 									<a class="genric-btn primary radius custom-btn" target="_blank" href="https://github.com/SamyMuhammad/ecommerce-application">Github</a>
 								</div>
 							</div>
