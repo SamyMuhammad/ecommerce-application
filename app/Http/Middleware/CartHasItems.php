@@ -17,7 +17,7 @@ class CartHasItems
     public function handle($request, Closure $next)
     {
         
-        if (Cart::count() < 1 ) {
+        if (Cart::instance('default')->count() < 1 ) {
             
            return redirect()->route('shop.index')->withErrors('Please add one item or more to the cart before checkout.');
         }

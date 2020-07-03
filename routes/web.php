@@ -52,21 +52,24 @@ Route::middleware(['auth', 'restore.cart'])->group(function (){
 	Route::get('/my-orders', 'OrdersController@index')->name('orders.index');
 });
 
-Route::get('do', function () {
-	/*
-	update products set image = 'products/June2020/6UM0m4lC1G15LaOxhl6N.jpg' where id between 62 and 80;
-	*/
-	// \Cart::destroy();
-	// dd(session()->all());
-	return ApiCart::count();
-});
-
-
 Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::fallback(function () {
+    return redirect()->route('landing-page');
+});
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+/*Route::get('do', function () {
+	
+	// update products set image = 'products/June2020/6UM0m4lC1G15LaOxhl6N.jpg' where id between 62 and 80;
+	
+	// \Cart::destroy();
+	// dd(session()->all()['cart']['default']); // get >> returns Collection object
+	// dd(session()->all()['cart']['key'] = 'value'); // put 
+	// dd(session()->all()['cart']); // remove unset($array['key'])
+});*/

@@ -27,15 +27,14 @@ use Illuminate\Support\Facades\Route;
 	Show a single product
 	Search for products
 	Show Cart Items
-
 	Add to Cart Items
 	Change qty for a Cart item
+	Remove from Cart
 	Add to SaveForLater
 	Remove from SavefroLater
 	Get the checkout data.
 	Show profile info
 	Update profile info
-	Show my orders
 */
 
 Route::group([
@@ -53,8 +52,19 @@ Route::group([
 });
 
 Route::group([
-	'middleware' => ['api', 'api.checkpassword', 'auth:api', 'api.session'],
+	'middleware' => ['api', 'api.checkpassword', 'auth:api'],
 	'namespace' => 'Api'], function (){
 
 		Route::get('cart', 'CartController@index');
+		Route::post('cart/add', 'CartController@store');
+		Route::patch('cart/{id}', 'CartController@update');
+		Route::delete('cart/{id}', 'CartController@destroy');
+
+		Route::post('save-for-later/add', 'SaveForLaterController@store');
+		Route::delete('save-for-later/{id}', 'SaveForLaterController@destroy');
+
+		Route::get('checkout', 'CheckoutController@index');
+
+		Route::get('/profile', 'UsersController@get');
+		Route::patch('/profile', 'UsersController@update');
 });

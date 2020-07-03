@@ -41,7 +41,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $dublicates = Cart::search(function ($cartItem, $rowId) use ($request){
+        $dublicates = Cart::instance('default')->search(function ($cartItem, $rowId) use ($request){
             return $cartItem->id == $request->id;
         });
 
@@ -96,7 +96,7 @@ class CartController extends Controller
             return response()->json(['success' => false], 400);
         }
 
-        Cart::update($id, $request->qty);
+        Cart::instance('default')->update($id, $request->qty);
 
         session()->flash('success', 'Quantity was updated successfully!');
         return response()->json(['success' => true]);
@@ -110,7 +110,7 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        Cart::remove($id);
+        Cart::instance('default')->remove($id);
 
         return back()->with('success', 'Item has been removed!');
     }
@@ -123,9 +123,9 @@ class CartController extends Controller
      */
     public function saveForLater($id)
     {
-        $item = Cart::get($id);
+        $item = Cart::instance('default')->get($id);
 
-        Cart::remove($id);
+        Cart::instance('default')->remove($id);
 
         $dublicates = Cart::instance('saveForLater')->search( function ($cartItem, $rowId) use ($id){
             return $rowId === $id;

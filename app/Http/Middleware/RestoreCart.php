@@ -17,7 +17,7 @@ class RestoreCart
     public function handle($request, Closure $next)
     {   
 
-        if (auth()->check() && ! session()->has('cart')) { 
+        if (auth()->check()) { 
 
             $identifier = auth()->id();
             Cart::instance('default')->restore($identifier);

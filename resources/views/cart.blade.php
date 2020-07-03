@@ -39,7 +39,7 @@
         @endif
     </div>
     <!--================Cart Area =================-->
-    @if (Cart::count() > 0)
+    @if (Cart::instance('default')->count() > 0)
         <section class="cart_area">
             <div class="container">
                 <h4 class="text-center">{{ Cart::count() }} item(s) in Shopping Cart</h4>
@@ -55,7 +55,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (Cart::content() as $item)
+                                {{-- @php dd(Cart::instance('default')->content()) @endphp --}}
+                                @foreach (Cart::instance('default')->content() as $item)
                                     <tr>
                                         <td>
                                             <div class="media">

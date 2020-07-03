@@ -65,7 +65,5 @@ class Kernel extends HttpKernel
         'restore.cart' => \App\Http\Middleware\RestoreCart::class,
         'CartHasItems' => \App\Http\Middleware\CartHasItems::class,
         'api.checkpassword' => \App\Http\Middleware\CheckPassword::class,
-        'api.session' => \Illuminate\Session\Middleware\StartSession::class,
-
     ];
 }
