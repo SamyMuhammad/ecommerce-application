@@ -63,15 +63,15 @@
 										</div>
 										<div class="prd-bottom">
 
-											<a href="" onclick="document.getElementById('cartAdding').submit(); return false;" class="cart-icon">
-												<i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i><span class="text">Add to Cart</span>
-											</a>
 											<form action="{{ route('cart.store') }}" method="POST" id="cartAdding" class="hidden-form">
 												@csrf
 												<input type="hidden" name="id" value="{{$product->id}}">
 												<input type="hidden" name="name" value="{{$product->name}}">
 												<input type="hidden" name="price" value="{{$product->price}}">
-												<button type="submit" class="primary-btn">Add to Cart</button>
+												<span class="cart-icon">
+													<i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+													<button type="submit" class="text">Add to Cart</button>
+												</span>
 											</form>
 
 										</div>

@@ -63,7 +63,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach (Cart::content() as $item)
+							@foreach (Cart::instance('default')->content() as $item)
 								<tr>
 									<td>
 										<p>{{ $item->model->name }}</p>
@@ -84,7 +84,7 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>${{ session('subtotal') }}</p>
+									<p>${{ $subtotal }}</p>
 								</td>
 							</tr>
 							<tr>
@@ -95,7 +95,7 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>${{ session('tax') }}</p>
+									<p>${{ $tax }}</p>
 								</td>
 							</tr>
 							<tr>
@@ -106,7 +106,7 @@
 									<h5></h5>
 								</td>
 								<td>
-									<p>${{ session('total') }}</p>
+									<p>${{ $total }}</p>
 								</td>
 							</tr>
 						</tbody>
