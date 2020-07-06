@@ -15,6 +15,8 @@
 > You can login as admin using ['email' => 'samy@email.com', 'password' => 'password']  
    or as a normal user with ['email' => 'user@email.com', 'password' => 'password'] or register a new user.
 
- > Use any of coupons ['fixed123', 'percent123'] and visa numbers "4242 4242 4242 4242" with any other data to checkout.
+> Use any of coupons ['fixed123', 'percent123'] and visa numbers "4242 4242 4242 4242" with any other data to checkout.
+   Add /admin to visit admin dashboard.
 
-#### visit from <a href="">here</a>
+
+#### visit from <a href="https://ecoommerce.herokuapp.com">here</a>
