@@ -1,0 +1,971 @@
+{
+	"info": {
+		"_postman_id": "57c9b569-80ba-47ce-935b-a5099652dd2e",
+		"name": "ecommerce-application",
+		"description": "Laravel ecomeerce app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Sa3d Kamal",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "sa3d@email.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "User Regiteration."
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "sa3d@email.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "api_password",
+							"value": "{{api_password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "User Login"
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "sa3d@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "api_password",
+									"value": "{{api_password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 03 Jul 2020 19:05:58 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.38 (Win32) OpenSSL/1.1.1a PHP/7.3.2"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.2"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Content-Length",
+							"value": "413"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODAzMTc1LCJleHAiOjE1OTM4MDY3NzUsIm5iZiI6MTU5MzgwMzE3NSwianRpIjoiVXdOUExFZWFJSUkySTN3UyIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.Rg3j33iU-kcbxPckldA8STEtZQ_Ct1y-IJ-9R7TJeOE\",\n    \"token_type\": \"bearer\",\n    \"expires_in\": 36000\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU5MzYzNjg2MiwiZXhwIjoxNTkzNjQwNDYyLCJuYmYiOjE1OTM2MzY4NjIsImp0aSI6IlpxdjJrNEJQaW83UkVZTnciLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.mGQe_EpIZQqB02JeqHAa14ZdkpnLLhg2p6tVCOabV_c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/logout?api_password=1oqRj44Vo0EBkuVI4HGz",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"logout"
+					],
+					"query": [
+						{
+							"key": "api_password",
+							"value": "1oqRj44Vo0EBkuVI4HGz"
+						}
+					]
+				},
+				"description": "User Logout"
+			},
+			"response": []
+		},
+		{
+			"name": "All Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/categories?api_password={{api_password}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories"
+					],
+					"query": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}"
+						}
+					]
+				},
+				"description": "Get all the products categories."
+			},
+			"response": []
+		},
+		{
+			"name": "All Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "api_password",
+							"value": "1oqRj44Vo0EBkuVI4HGz",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/products?paginate=10&api_password={{api_password}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "paginate",
+							"value": "10"
+						},
+						{
+							"key": "api_password",
+							"value": "{{api_password}}"
+						},
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Get all the products."
+			},
+			"response": []
+		},
+		{
+			"name": "Single Product",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "api_password",
+							"value": "1oqRj44Vo0EBkuVI4HGz",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/products/TV7?api_password={{api_password}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"products",
+						"TV7"
+					],
+					"query": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}"
+						}
+					]
+				},
+				"description": "Get a single product."
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/search?query=lap&api_password={{api_password}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "lap"
+						},
+						{
+							"key": "api_password",
+							"value": "{{api_password}}"
+						}
+					]
+				},
+				"description": "Search for a product."
+			},
+			"response": []
+		},
+		{
+			"name": "Cart Items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODA3MDg1LCJleHAiOjE1OTM4MTA2ODUsIm5iZiI6MTU5MzgwNzA4NSwianRpIjoicHVrY3hTbmszOVFHV3dLVyIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WrpU8cVlE_hxfgNCoExCng2bfjgi3d6B4EyCooxnluE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/cart?api_password={{api_password}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"cart"
+					],
+					"query": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}"
+						}
+					]
+				},
+				"description": "Get all the Cart Items."
+			},
+			"response": [
+				{
+					"name": "Cart Items",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cart?api_password={{api_password}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cart"
+							],
+							"query": [
+								{
+									"key": "api_password",
+									"value": "{{api_password}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 03 Jul 2020 19:06:48 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.38 (Win32) OpenSSL/1.1.1a PHP/7.3.2"
+						},
+						{
+							"key": "Vary",
+							"value": "Authorization"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.2"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ecommerce_application_session=eg1QpKBoe2d3np2OpzMXGdTDJ1zvsx7XvRPBod00; expires=Fri, 03-Jul-2020 21:06:52 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "754"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"data\": {\n        \"default\": {\n            \"c1db1025126b9d1b9a0ca862b0a51f07\": {\n                \"rowId\": \"c1db1025126b9d1b9a0ca862b0a51f07\",\n                \"id\": \"33\",\n                \"name\": \"TV13\",\n                \"qty\": 1,\n                \"price\": 801,\n                \"options\": [],\n                \"tax\": \"112.14\",\n                \"subtotal\": \"801.00\"\n            }\n        },\n        \"saveForLater\": {\n            \"0b2dd5cdcecd5be0634f4786766f0297\": {\n                \"rowId\": \"0b2dd5cdcecd5be0634f4786766f0297\",\n                \"id\": \"77\",\n                \"name\": \"Watch17\",\n                \"qty\": 1,\n                \"price\": 99,\n                \"options\": [],\n                \"tax\": \"13.86\",\n                \"subtotal\": \"99.00\"\n            },\n            \"027c91341fd5cf4d2579b49c4b6a90da\": {\n                \"rowId\": \"027c91341fd5cf4d2579b49c4b6a90da\",\n                \"id\": \"1\",\n                \"name\": \"Laptop1\",\n                \"qty\": 1,\n                \"price\": 745,\n                \"options\": [],\n                \"tax\": \"104.30\",\n                \"subtotal\": \"745.00\"\n            },\n            \"88aad65a1416c8271cddc2ee48e4a30b\": {\n                \"rowId\": \"88aad65a1416c8271cddc2ee48e4a30b\",\n                \"id\": \"56\",\n                \"name\": \"Shoes16\",\n                \"qty\": 1,\n                \"price\": 85,\n                \"options\": [],\n                \"tax\": \"11.90\",\n                \"subtotal\": \"85.00\"\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Add to Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzNzg3NzY0LCJleHAiOjE1OTM3OTEzNjQsIm5iZiI6MTU5Mzc4Nzc2NSwianRpIjoiQXVNRmRoajJMRHo4VnhrcSIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.wuIWI3bLXF7uhElaEkhOVPNNLX7CtOPGKwiqCnf4ZRc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "21",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "TV1",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "555",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/cart/add?api_password={{api_password}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"cart",
+						"add"
+					],
+					"query": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}"
+						}
+					]
+				},
+				"description": "Add a new item to the Cart."
+			},
+			"response": []
+		},
+		{
+			"name": "Change quantity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODA3MDg1LCJleHAiOjE1OTM4MTA2ODUsIm5iZiI6MTU5MzgwNzA4NSwianRpIjoicHVrY3hTbmszOVFHV3dLVyIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WrpU8cVlE_hxfgNCoExCng2bfjgi3d6B4EyCooxnluE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}",
+							"type": "text"
+						},
+						{
+							"key": "_method",
+							"value": "PATCH",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/cart/027c91341fd5cf4d2579b49c4b6a90da",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"cart",
+						"027c91341fd5cf4d2579b49c4b6a90da"
+					]
+				},
+				"description": "Update a cart item quantity."
+			},
+			"response": []
+		},
+		{
+			"name": "Remove from Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzNzg3NzY0LCJleHAiOjE1OTM3OTEzNjQsIm5iZiI6MTU5Mzc4Nzc2NSwianRpIjoiQXVNRmRoajJMRHo4VnhrcSIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.wuIWI3bLXF7uhElaEkhOVPNNLX7CtOPGKwiqCnf4ZRc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}",
+							"type": "text"
+						},
+						{
+							"key": "_method",
+							"value": "DELETE",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/cart/815568ad81eb57fe2f77ee19175a39ba",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"cart",
+						"815568ad81eb57fe2f77ee19175a39ba"
+					]
+				},
+				"description": "Remove a Cart Item."
+			},
+			"response": []
+		},
+		{
+			"name": "Add to \"saveForLater\" list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODA3MDg1LCJleHAiOjE1OTM4MTA2ODUsIm5iZiI6MTU5MzgwNzA4NSwianRpIjoicHVrY3hTbmszOVFHV3dLVyIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WrpU8cVlE_hxfgNCoExCng2bfjgi3d6B4EyCooxnluE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Laptop1",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "745",
+							"type": "text"
+						},
+						{
+							"key": "api_password",
+							"value": "{{api_password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/save-for-later/add",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"save-for-later",
+						"add"
+					]
+				},
+				"description": "Add a new item to \"saveForLater\" list."
+			},
+			"response": []
+		},
+		{
+			"name": "Remove from \"saveForLater\" list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODA3MDg1LCJleHAiOjE1OTM4MTA2ODUsIm5iZiI6MTU5MzgwNzA4NSwianRpIjoicHVrY3hTbmszOVFHV3dLVyIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WrpU8cVlE_hxfgNCoExCng2bfjgi3d6B4EyCooxnluE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}",
+							"type": "text"
+						},
+						{
+							"key": "_method",
+							"value": "DELETE",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/save-for-later/027c91341fd5cf4d2579b49c4b6a90da",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"save-for-later",
+						"027c91341fd5cf4d2579b49c4b6a90da"
+					]
+				},
+				"description": "Remove an Item from \"saveForLater\" list."
+			},
+			"response": []
+		},
+		{
+			"name": "Get checkout data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODEwNDIzLCJleHAiOjE1OTM4MTQwMjMsIm5iZiI6MTU5MzgxMDQyMywianRpIjoiRlBBR3hRYjVlOGdDRGZZTSIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.FQXCiq-cVkfqkQvIWtZemfzVQD6OUlhuJ60mYYg6P9w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/checkout?api_password={{api_password}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checkout"
+					],
+					"query": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}"
+						}
+					]
+				},
+				"description": "Get the checkout data [subtotal, tax, total]."
+			},
+			"response": [
+				{
+					"name": "Cart Items",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/cart?api_password={{api_password}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cart"
+							],
+							"query": [
+								{
+									"key": "api_password",
+									"value": "{{api_password}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 03 Jul 2020 19:06:48 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.38 (Win32) OpenSSL/1.1.1a PHP/7.3.2"
+						},
+						{
+							"key": "Vary",
+							"value": "Authorization"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.2"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ecommerce_application_session=eg1QpKBoe2d3np2OpzMXGdTDJ1zvsx7XvRPBod00; expires=Fri, 03-Jul-2020 21:06:52 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "754"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"code\": 200,\n    \"data\": {\n        \"default\": {\n            \"c1db1025126b9d1b9a0ca862b0a51f07\": {\n                \"rowId\": \"c1db1025126b9d1b9a0ca862b0a51f07\",\n                \"id\": \"33\",\n                \"name\": \"TV13\",\n                \"qty\": 1,\n                \"price\": 801,\n                \"options\": [],\n                \"tax\": \"112.14\",\n                \"subtotal\": \"801.00\"\n            }\n        },\n        \"saveForLater\": {\n            \"0b2dd5cdcecd5be0634f4786766f0297\": {\n                \"rowId\": \"0b2dd5cdcecd5be0634f4786766f0297\",\n                \"id\": \"77\",\n                \"name\": \"Watch17\",\n                \"qty\": 1,\n                \"price\": 99,\n                \"options\": [],\n                \"tax\": \"13.86\",\n                \"subtotal\": \"99.00\"\n            },\n            \"027c91341fd5cf4d2579b49c4b6a90da\": {\n                \"rowId\": \"027c91341fd5cf4d2579b49c4b6a90da\",\n                \"id\": \"1\",\n                \"name\": \"Laptop1\",\n                \"qty\": 1,\n                \"price\": 745,\n                \"options\": [],\n                \"tax\": \"104.30\",\n                \"subtotal\": \"745.00\"\n            },\n            \"88aad65a1416c8271cddc2ee48e4a30b\": {\n                \"rowId\": \"88aad65a1416c8271cddc2ee48e4a30b\",\n                \"id\": \"56\",\n                \"name\": \"Shoes16\",\n                \"qty\": 1,\n                \"price\": 85,\n                \"options\": [],\n                \"tax\": \"11.90\",\n                \"subtotal\": \"85.00\"\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Profile data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODEyODY1LCJleHAiOjE1OTM4MTY0NjYsIm5iZiI6MTU5MzgxMjg2NiwianRpIjoiQ1dRdG15RjRYcTdWV3hkZCIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.Qc_oZz_3VeBTDLTY9CWri-Ht8QAYMhcQmsvoeMMHfMY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/profile?api_password={{api_password}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"profile"
+					],
+					"query": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}"
+						}
+					]
+				},
+				"description": "Get [name, email] of the authenticated user."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2Vjb21tZXJjZS1hcHBsaWNhdGlvblwvcHVibGljXC9hcGlcL2xvZ2luIiwiaWF0IjoxNTkzODEyODY1LCJleHAiOjE1OTM4MTY0NjYsIm5iZiI6MTU5MzgxMjg2NiwianRpIjoiQ1dRdG15RjRYcTdWV3hkZCIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.Qc_oZz_3VeBTDLTY9CWri-Ht8QAYMhcQmsvoeMMHfMY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "api_password",
+							"value": "{{api_password}}",
+							"type": "text"
+						},
+						{
+							"key": "_method",
+							"value": "PATCH",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": " Sa3d Adel",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": " sa3d@email.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/profile",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"profile"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Update [name, email, password] of the authenticated user."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "96d1c699-869e-4660-8e82-7d640392cc90",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e7534a0c-aaa5-422d-a133-c926c80f4595",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "5a2011c9-0741-4a9b-8cb2-2bf8dd9b4e3e",
+			"key": "url",
+			"value": "localhost/ecommerce-application/public/api"
+		},
+		{
+			"id": "84c3a6a6-d18a-42e3-a488-61649940b985",
+			"key": "api_password",
+			"value": "1oqRj44Vo0EBkuVI4HGz"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
