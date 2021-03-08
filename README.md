@@ -8,7 +8,7 @@
 
 **Application Features**
 
-- Admin Dashboured with Voyager
+- Admin Dashboared with Voyager
 - Stripe integretion for the checkout
 - RestFull APIs using JWT
 
